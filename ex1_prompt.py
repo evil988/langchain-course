@@ -50,4 +50,4 @@ resposta_1 = chain.invoke({
 })
 print(f"RESPOSTA 1:\n{resposta_1}\n\n")
 
-# uv run python ex1-prompt.py
+# uv run python ex1_prompt.py
