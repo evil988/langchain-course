@@ -44,3 +44,5 @@ pergunta_exemplo = (
 resposta = chain.invoke({"pergunta": pergunta_exemplo})
 print(f"Pergunta: {pergunta_exemplo}")
 print(f"RESPOSTA:\n{resposta}\n")
+
+# uv run python ex3_chain_of_thought.py
