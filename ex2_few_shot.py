@@ -1,4 +1,4 @@
-""" Exemplo prompt "Few-Shot" """
+"""Exemplo prompt Few-Shot"""
 import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
