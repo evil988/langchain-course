@@ -84,3 +84,5 @@ resposta_3 = chain.invoke({
 })
 print(f"Texto: {texto_teste_3}")
 print(f"RESPOSTA: {resposta_3}\n")
+
+# uv run python ex2_few_shot.py
