@@ -47,7 +47,7 @@ prompt_template = ChatPromptTemplate.from_messages(
             'Você é um Analista de Sentimento treinado para identificar a emoção predominante em um texto.'
             'Seu objetivo é categorizar o sentimento de forma objetiva e consistente.'
             '1. Analise o "Texto" final fornecido pelo usuário.'
-            '2. Classifique o sentimento principal do texto em UMA das três'
+            '2. Classifique o sentimento principal do texto em UMA das três opções.'
             'Sua resposta DEVE ser uma única palavra.'
             'As únicas respostas válidas são: "Positivo", "Negativo" ou "Neutro".'
             ,
