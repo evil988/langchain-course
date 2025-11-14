@@ -12,12 +12,15 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-# Chave de API
+# Plano A
 groq_api_key = os.environ["GROQ_API_KEY"]
+
+# Plano B
+# groq_api_key = os.environ["GROQ_API_KEY_2"]
 
 # Inicializar o LLM
 # https://console.groq.com/docs/model/llama-3.3-70b-versatile
-llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+llm = ChatGroq(groq_api_key=groq_api_key, model="llama-3.3-70b-versatile", temperature=0)
 
 @tool
 def calcular_idade(data_nascimento: str) -> str:
@@ -44,15 +47,6 @@ tools = [DuckDuckGoSearchRun(name="web_search"), calcular_idade]
 
 # O Prompt ReAct
 prompt = hub.pull("hwchase17/react")
-
-# # Correção
-# # Definir nossa nova regra estrita
-# regra_adicional = """
-# REGRA CRÍTICA: Ao formular a "Final Answer" (Resposta Final), você DEVE usar *exclusivamente* as informações obtidas nas suas "Observations" (resultados das ferramentas). 
-# NÃO USE seu conhecimento prévio, mesmo que você ache que sabe a resposta. O resultado da ferramenta é a única fonte da verdade.
-# """
-# # Criar o novo template de prompt
-# prompt = prompt + "\n" + regra_adicional
 
 # Combina o LLM, as ferramentas e o prompt.
 agent = create_react_agent(llm, tools, prompt)
