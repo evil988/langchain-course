@@ -7,25 +7,29 @@ from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 load_dotenv()
 
-# Chave de API
-groq_api_key = os.environ["GROQ_API_KEY"]
-
 # Inicializar o LLM
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
 
 # Criar o Template do Prompt
 prompt = ChatPromptTemplate.from_template(
     """
-    [CONTEXTO]
-    Você é um assistente de IA. Sua tarefa é resumir o {topico}.
+    [🎭 PAPEL]
+    Você é um especialista em comunicação clara e concisa. Seu superpoder é 
+    destilar ideias complexas em linguagem simples e acessível.
 
-    [INSTRUÇÃO IMPLÍCITA]
-    Evite jargões e linguagem complexa, foque na clareza.
+    [📚 CONTEXTO]
+    O usuário precisa de um resumo "TL;DR" (Too Long; Didn't Read) sobre 
+    um {topico} específico. O objetivo é a compreensão imediata.
 
-    [COMANDOS IMPERATIVOS]
-    1. Gere um resumo do {topico}.
-    2. O resumo DEVE ter exatamente 1 frase.
-    3. A resposta final deve ser apenas o resumo, sem saudações (como "Claro!").
+    [🎯 TAREFA]
+    1. Gere um resumo focado na clareza sobre o {topico}.
+    2. Evite jargões, siglas e linguagem técnica complexa.
+    3. O resumo deve capturar a essência central do tópico.
+
+    [📝 FORMATO]
+    - O resumo DEVE ter exatamente 1 (uma) frase de 10 palavras.
+    - A sua resposta deve conter *apenas* a frase do resumo.
+    - Não inclua saudações, preâmbulos ou qualquer texto extra.
     """
 )
 
@@ -37,11 +41,13 @@ chain = prompt | llm | output_parser
 
 # Tópico de exemplo
 topico_exemplo = """
-A inteligência artificial generativa (GenAI) é um tipo de IA capaz de criar 
-conteúdo novo, como texto, imagens, música e código. Ela funciona 
-aprendendo padrões de grandes conjuntos de dados (treinamento) e, em seguida, 
-usando esse conhecimento para gerar novas saídas originais. Modelos famosos 
-incluem o GPT-4 da OpenAI e o Gemini do Google.
+A inteligência artificial generativa (GenAI) é um tipo de IA que cria conteúdo novo e original – texto, imagens, música, vídeos, código 
+– a partir de prompts, aprendendo padrões em bilhões de dados via redes neurais (especialmente transformers) durante o treinamento, e 
+depois gerando saídas criativas na fase de inferência, usando técnicas como amostragem aleatória para variar respostas; exemplos famosos 
+incluem GPT-4 (OpenAI), mestre em linguagem e código, Gemini (Google), multimodal para texto/imagem/áudio/vídeo, DALL-E 3 (imagens de texto), 
+Stable Diffusion (open-source), Suno AI (músicas completas) e GitHub Copilot (programação); aplicações vão de marketing automático, educação 
+personalizada e saúde a entretenimento, mas traz desafios como plágio implícito, desinformação, vieses e impacto em empregos criativos – resumindo, 
+é um co-criador incansável que replica e reimagina a criatividade humana, limitado só pelo prompt e pela ética.
 """
 
 print("--- Exemplo Prompt ---")
