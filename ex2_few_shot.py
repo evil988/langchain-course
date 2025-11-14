@@ -6,9 +6,6 @@ from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
 load_dotenv()
 
-# Chave de API
-groq_api_key = os.environ["GROQ_API_KEY"]
-
 # Inicializar o LLM
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
 
@@ -47,7 +44,13 @@ prompt_template = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            'Sua tarefa é classificar o sentimento de um texto. Responda APENAS com "Positivo", "Negativo" ou "Neutro".',
+            'Você é um Analista de Sentimento treinado para identificar a emoção predominante em um texto.'
+            'Seu objetivo é categorizar o sentimento de forma objetiva e consistente.'
+            '1. Analise o "Texto" final fornecido pelo usuário.'
+            '2. Classifique o sentimento principal do texto em UMA das três'
+            'Sua resposta DEVE ser uma única palavra.'
+            'As únicas respostas válidas são: "Positivo", "Negativo" ou "Neutro".'
+            ,
         ),
         few_shot_prompt,
         ("human", 'Texto: "{texto_usuario}"'),
