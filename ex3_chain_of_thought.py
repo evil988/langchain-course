@@ -8,9 +8,6 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-# Chave de API
-groq_api_key = os.environ["GROQ_API_KEY"]
-
 # Inicializar o LLM
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
 
